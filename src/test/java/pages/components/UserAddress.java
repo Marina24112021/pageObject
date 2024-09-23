@@ -4,7 +4,7 @@ import com.codeborne.selenide.SelenideElement;
 import static com.codeborne.selenide.Selenide.*;
 
 public class UserAddress {
-    private SelenideElement currentAddressInput = $("#currentAddress"),
+    private final SelenideElement currentAddressInput = $("#currentAddress"),
                             stateInput = $("#react-select-3-input"),
                             cityInput = $("#react-select-4-input"),
                             permanentAddressInput = $("#permanentAddress");

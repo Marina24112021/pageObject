@@ -8,7 +8,7 @@ import static com.codeborne.selenide.Selenide.executeJavaScript;
 
 
 public class RegistrationPage {
-    private SelenideElement firstNameInput = $("#firstName"),
+    public final SelenideElement firstNameInput = $("#firstName"),
                             lastNameInput = $("#lastName"),
                             emailInput = $("#userEmail"),
                             genderInput = $("#genterWrapper"),
@@ -27,36 +27,36 @@ public class RegistrationPage {
         return this;
     }
 
-    public RegistrationPage SetFirstName(String name){
+    public RegistrationPage setFirstName(String name){
         firstNameInput.setValue(name);
         return  this;
     }
-    public RegistrationPage SetLastName(String lastname){
+    public RegistrationPage setLastName(String lastname){
         lastNameInput.setValue(lastname);
         return  this;
     }
-    public RegistrationPage SetUseEmail(String email){
+    public RegistrationPage setUseEmail(String email){
         emailInput.setValue(email);
         return  this;
     }
-    public RegistrationPage SetUserGender(String gender){
+    public RegistrationPage setUserGender(String gender){
         genderInput.$(byText(gender)).click();
         return  this;
     }
-    public RegistrationPage SetUserPhoneNumber(String phoneNum){
+    public RegistrationPage setUserPhoneNumber(String phoneNum){
         phoneNumberInput.setValue(phoneNum);
         return  this;
     }
-    public RegistrationPage SetDateOfBirth(String day, String month, String year){
+    public RegistrationPage setDateOfBirth(String day, String month, String year){
         calendarInout.click();
         calendarComponent.setDate(day, month, year);
         return  this;
     }
-    public RegistrationPage SetUserSubjects(String subject){
+    public RegistrationPage setUserSubjects(String subject){
         subjectInput.setValue(subject).pressEnter();
         return  this;
     }
-    public RegistrationPage SetUserHobbies(String hobbies){
+    public RegistrationPage setUserHobbies(String hobbies){
         hobbiesInput.$(byText(hobbies)).click();
         return  this;
     }

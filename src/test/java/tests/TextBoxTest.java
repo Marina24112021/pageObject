@@ -14,8 +14,8 @@ public class TextBoxTest extends TestBase{
         ResultRegistrationForm resultRegistrationForm = new ResultRegistrationForm();
 
         textBoxRegistrationPage.openPage()
-                .SetFullName("Ivan Ivanov");
-        registrationPage.SetUseEmail("fff@ddd.dd");
+                .setFullName("Ivan Ivanov");
+        registrationPage.setUseEmail("fff@ddd.dd");
         userAddress.setUserAddress("Uzbekistan")
                 .setUserPermanentAddress("USA");
         submitForm.clickOnSubmit();

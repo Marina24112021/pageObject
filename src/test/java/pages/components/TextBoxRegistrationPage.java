@@ -7,7 +7,7 @@ import static com.codeborne.selenide.Selenide.*;
 import static com.codeborne.selenide.Selenide.executeJavaScript;
 
 public class TextBoxRegistrationPage {
-    private SelenideElement fullNameInput = $("#userName"),
+    private final SelenideElement fullNameInput = $("#userName"),
                             namePageInput = $(".text-center");
 
     public TextBoxRegistrationPage openPage() {
@@ -17,7 +17,7 @@ public class TextBoxRegistrationPage {
         executeJavaScript("$('footer').remove()");
         return this;
     }
-    public TextBoxRegistrationPage SetFullName(String fullName){
+    public TextBoxRegistrationPage setFullName(String fullName){
         fullNameInput.setValue(fullName);
         return  this;
     }

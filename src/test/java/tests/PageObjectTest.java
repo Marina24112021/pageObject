@@ -1,5 +1,6 @@
 package tests;
 
+import com.codeborne.selenide.Selenide;
 import org.junit.jupiter.api.Test;
 import pages.components.*;
 
@@ -12,17 +13,19 @@ public class PageObjectTest extends TestBase {
         UserAddress userAddress = new UserAddress();
         SubmitForm submitForm = new SubmitForm();
         ResultRegistrationForm resultRegistrationForm = new ResultRegistrationForm();
+
         registrationPage.openPage()
-                .SetFirstName("Ivan")
-                .SetLastName("Ivanov")
-                .SetUseEmail("IvanIvanov@test.ru")
-                .SetUserGender("Male")
-                .SetUserPhoneNumber("0123456789")
-                .SetDateOfBirth("001","11","2000")
-                .SetUserSubjects("Math")
-                .SetUserHobbies("Sports");
+                .setFirstName("Ivan")
+                .setLastName("Ivanov")
+                .setUseEmail("IvanIvanov@test.ru")
+                .setUserGender("Male")
+                .setUserPhoneNumber("0123456789")
+                .setDateOfBirth("001","11","2000")
+                .setUserSubjects("Math")
+                .setUserHobbies("Sports");
         uploadFile.uploadFileMethod("pic.png");
-        userAddress.setUserAddress("Current address is Colombia", "Haryana", "Karnal");
+        userAddress.setUserAddress("Current address is Colombia")
+                    .setUserAddressStateCity("Haryana", "Karnal");
         submitForm.clickOnSubmit();
 
         resultRegistrationForm.checkRegistrationForm("Student Name", "Ivan "+"Ivanov")
@@ -43,11 +46,11 @@ public class PageObjectTest extends TestBase {
         SubmitForm submitForm = new SubmitForm();
         ResultRegistrationForm resultRegistrationForm = new ResultRegistrationForm();
         registrationPage.openPage()
-                .SetFirstName("Ann")
-                .SetLastName("Petrova")
-                .SetUserGender("Female")
-                .SetUserPhoneNumber("9876543210")
-                .SetDateOfBirth("028","1","1999");
+                .setFirstName("Ann")
+                .setLastName("Petrova")
+                .setUserGender("Female")
+                .setUserPhoneNumber("9876543210")
+                .setDateOfBirth("028","1","1999");
         submitForm.clickOnSubmit();
 
         resultRegistrationForm.checkRegistrationForm("Student Name","Ann Petrova")
@@ -56,15 +59,15 @@ public class PageObjectTest extends TestBase {
                 .checkRegistrationForm("Date of Birth","28 February,1999");
     }
     @Test
-    void negativeLongOfMobilePhoneTest() {
+    void negativeMobilePhoneTest() {
         RegistrationPage registrationPage = new RegistrationPage();
         SubmitForm submitForm = new SubmitForm();
         ResultRegistrationForm resultRegistrationForm = new ResultRegistrationForm();
         registrationPage.openPage()
-                .SetFirstName("Ann")
-                .SetLastName("Petrova")
-                .SetUserGender("Female")
-                .SetUserPhoneNumber("111");
+                .setFirstName("Ann")
+                .setLastName("Petrova")
+                .setUserGender("Female")
+                .setUserPhoneNumber("111");
         submitForm.clickOnSubmit();
 
         resultRegistrationForm.checkLongOfMobileInput();

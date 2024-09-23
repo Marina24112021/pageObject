@@ -8,7 +8,7 @@ import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.$;
 
 public class ResultRegistrationForm {
-    private SelenideElement tableResponsive = $(".table-responsive"),
+    private final SelenideElement tableResponsive = $(".table-responsive"),
                     userMobileNumber = $("#userNumber");
 
     public ResultRegistrationForm checkRegistrationForm(String key, String value){
