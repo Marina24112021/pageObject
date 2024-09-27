@@ -1,7 +1,11 @@
 package tests;
 
+import components.ResultRegistrationForm;
+import components.SubmitForm;
+import components.UserAddress;
+import pages.TextBoxRegistrationPage;
 import org.junit.jupiter.api.Test;
-import pages.components.*;
+import pages.*;
 
 public class TextBoxTest extends TestBase{
 

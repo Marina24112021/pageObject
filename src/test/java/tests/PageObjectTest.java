@@ -1,42 +1,65 @@
 package tests;
 
+import components.ResultRegistrationForm;
+import components.SubmitForm;
+import components.UploadFile;
+import components.UserAddress;
 import org.junit.jupiter.api.Test;
-import pages.components.*;
+import pages.*;
+import utils.RandomDataUtils;
 
 public class PageObjectTest extends TestBase {
+    RegistrationPage registrationPage = new RegistrationPage();
+    RandomDataUtils randomUtils = new RandomDataUtils();
+    UploadFile uploadFile = new UploadFile();
+    UserAddress userAddress = new UserAddress();
+    SubmitForm submitForm = new SubmitForm();
+    ResultRegistrationForm resultRegistrationForm = new ResultRegistrationForm();
+
+    private final String firstName = randomUtils.setFirstName(),
+            lastName = randomUtils.setLastName(),
+            email = randomUtils.setEmail(),
+            gender = randomUtils.setGender(),
+            phoneNum = randomUtils.setPhoneNum(),
+            incorrectPhoneNum = randomUtils.setIncorrectPhoneNum(),
+            dayOfBirth = randomUtils.setDayOfBirth(),
+            monthOfBirth = randomUtils.setMonthOfBirth(),
+            yearOfBirth = randomUtils.setYearOfBirth(),
+            subject = randomUtils.setSubject(),
+            hobby = randomUtils.setHobby(),
+            picture = "pic.png",
+            address = randomUtils.setAddress(),
+            state = randomUtils.setState(),
+            city = randomUtils.setCity(state);
+
 
     @Test
     void positiveFullFormTest() {
-        RegistrationPage registrationPage = new RegistrationPage();
-        UploadFile uploadFile = new UploadFile();
-        UserAddress userAddress = new UserAddress();
-        SubmitForm submitForm = new SubmitForm();
-        ResultRegistrationForm resultRegistrationForm = new ResultRegistrationForm();
 
         registrationPage.openPage()
-                .setFirstName("Ivan")
-                .setLastName("Ivanov")
-                .setUseEmail("IvanIvanov@test.ru")
-                .setUserGender("Male")
-                .setUserPhoneNumber("0123456789")
-                .setDateOfBirth("001","11","2000")
-                .setUserSubjects("Math")
-                .setUserHobbies("Sports");
-        uploadFile.uploadFileMethod("pic.png");
-        userAddress.setUserAddress("Current address is Colombia")
-                    .setUserAddressStateCity("Haryana", "Karnal");
+                .setFirstName(firstName)
+                .setLastName(lastName)
+                .setUseEmail(email)
+                .setUserGender(gender)
+                .setUserPhoneNumber(phoneNum)
+                .setDateOfBirth(dayOfBirth, monthOfBirth, yearOfBirth)
+                .setUserSubjects(subject)
+                .setUserHobbies(hobby);
+        uploadFile.uploadFileMethod(picture);
+        userAddress.setUserAddress(address)
+                    .setUserAddressStateCity(state, city);
         submitForm.clickOnSubmit();
 
-        resultRegistrationForm.checkRegistrationForm("Student Name", "Ivan "+"Ivanov")
-                .checkRegistrationForm("Student Email", "IvanIvanov@test.ru")
-                .checkRegistrationForm("Gender", "Male")
-                .checkRegistrationForm("Mobile", "0123456789")
-                .checkRegistrationForm("Date of Birth", "01 December,2000")
-                .checkRegistrationForm("Subjects", "Math")
-                .checkRegistrationForm("Hobbies", "Sports")
-                .checkRegistrationForm("Picture", "pic.png")
-                .checkRegistrationForm("Address", "Current address is Colombia")
-                .checkRegistrationForm("State and City", "Haryana Karnal");
+        resultRegistrationForm.checkRegistrationForm("Student Name", firstName + " " + lastName)
+                .checkRegistrationForm("Student Email", email)
+                .checkRegistrationForm("Gender", gender)
+                .checkRegistrationForm("Mobile", phoneNum)
+                .checkRegistrationForm("Date of Birth", dayOfBirth + " " + randomUtils.getNameOfMonth() + "," + yearOfBirth)
+                .checkRegistrationForm("Subjects", subject)
+                .checkRegistrationForm("Hobbies", hobby)
+                .checkRegistrationForm("Picture", picture)
+                .checkRegistrationForm("Address", address)
+                .checkRegistrationForm("State and City", state + " " + city);
 
     }
     @Test
@@ -45,17 +68,17 @@ public class PageObjectTest extends TestBase {
         SubmitForm submitForm = new SubmitForm();
         ResultRegistrationForm resultRegistrationForm = new ResultRegistrationForm();
         registrationPage.openPage()
-                .setFirstName("Ann")
-                .setLastName("Petrova")
-                .setUserGender("Female")
-                .setUserPhoneNumber("9876543210")
-                .setDateOfBirth("028","1","1999");
+                .setFirstName(firstName)
+                .setLastName(lastName)
+                .setUserGender(gender)
+                .setUserPhoneNumber(phoneNum)
+                .setDateOfBirth(dayOfBirth, monthOfBirth, yearOfBirth);
         submitForm.clickOnSubmit();
 
-        resultRegistrationForm.checkRegistrationForm("Student Name","Ann Petrova")
-                .checkRegistrationForm("Gender","Female")
-                .checkRegistrationForm("Mobile","9876543210")
-                .checkRegistrationForm("Date of Birth","28 February,1999");
+        resultRegistrationForm.checkRegistrationForm("Student Name", firstName + " " + lastName)
+                .checkRegistrationForm("Gender", gender)
+                .checkRegistrationForm("Mobile", phoneNum)
+                .checkRegistrationForm("Date of Birth", dayOfBirth + " " + randomUtils.getNameOfMonth() + "," + yearOfBirth);
     }
     @Test
     void negativeMobilePhoneTest() {
@@ -63,12 +86,11 @@ public class PageObjectTest extends TestBase {
         SubmitForm submitForm = new SubmitForm();
         ResultRegistrationForm resultRegistrationForm = new ResultRegistrationForm();
         registrationPage.openPage()
-                .setFirstName("Ann")
-                .setLastName("Petrova")
-                .setUserGender("Female")
-                .setUserPhoneNumber("111");
+                .setFirstName(firstName)
+                .setLastName(lastName)
+                .setUserGender(gender)
+                .setUserPhoneNumber(incorrectPhoneNum);
         submitForm.clickOnSubmit();
-
         resultRegistrationForm.checkLongOfMobileInput();
     }
 }
