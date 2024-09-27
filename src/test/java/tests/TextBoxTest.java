@@ -6,27 +6,34 @@ import components.UserAddress;
 import pages.TextBoxRegistrationPage;
 import org.junit.jupiter.api.Test;
 import pages.*;
+import utils.RandomDataUtils;
 
 public class TextBoxTest extends TestBase{
+    RandomDataUtils randomUtils = new RandomDataUtils();
+    RegistrationPage registrationPage = new RegistrationPage();
+    TextBoxRegistrationPage textBoxRegistrationPage = new TextBoxRegistrationPage();
+    UserAddress userAddress = new UserAddress();
+    SubmitForm submitForm = new SubmitForm();
+    ResultRegistrationForm resultRegistrationForm = new ResultRegistrationForm();
+
+    private final String firstName = randomUtils.setFirstName(),
+            lastName = randomUtils.setLastName(),
+            email = randomUtils.setEmail(),
+            currentAddress = randomUtils.setAddress(),
+            permanentAddress = randomUtils.setAddress();
 
     @Test
     void fillFormTest() {
-        RegistrationPage registrationPage = new RegistrationPage();
-        TextBoxRegistrationPage textBoxRegistrationPage = new TextBoxRegistrationPage();
-        UserAddress userAddress = new UserAddress();
-        SubmitForm submitForm = new SubmitForm();
-        ResultRegistrationForm resultRegistrationForm = new ResultRegistrationForm();
-
         textBoxRegistrationPage.openPage()
-                .setFullName("Ivan Ivanov");
-        registrationPage.setUseEmail("fff@ddd.dd");
-        userAddress.setUserAddress("Uzbekistan")
-                .setUserPermanentAddress("USA");
+                .setFullName(firstName + " " + lastName);
+        registrationPage.setUseEmail(email);
+        userAddress.setUserAddress(currentAddress)
+                .setUserPermanentAddress(permanentAddress);
         submitForm.clickOnSubmit();
 
-        resultRegistrationForm.checkTextBox("#output #name", "Ivan Ivanov")
-                .checkTextBox("#output #email", "fff@ddd.dd")
-                .checkTextBox("#output #currentAddress", "Uzbekistan")
-                .checkTextBox("#output #permanentAddress","USA");
+        resultRegistrationForm.checkTextBox("#output #name", firstName + " " + lastName)
+                .checkTextBox("#output #email", email)
+                .checkTextBox("#output #currentAddress", currentAddress)
+                .checkTextBox("#output #permanentAddress",permanentAddress);
     }
 }

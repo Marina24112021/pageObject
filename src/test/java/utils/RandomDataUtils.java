@@ -44,6 +44,9 @@ public class RandomDataUtils {
     public String setAddress(){
         return faker.address().fullAddress();
     }
+    public String setPermanentAddress(){
+        return faker.address().fullAddress();
+    }
     public String setState(){
         return faker.options().option("NCR", "Haryana", "Uttar Pradesh");
     }

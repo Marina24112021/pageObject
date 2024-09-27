@@ -35,7 +35,6 @@ public class PageObjectTest extends TestBase {
 
     @Test
     void positiveFullFormTest() {
-
         registrationPage.openPage()
                 .setFirstName(firstName)
                 .setLastName(lastName)
@@ -64,9 +63,6 @@ public class PageObjectTest extends TestBase {
     }
     @Test
     void positiveRequiredFormTest() {
-        RegistrationPage registrationPage = new RegistrationPage();
-        SubmitForm submitForm = new SubmitForm();
-        ResultRegistrationForm resultRegistrationForm = new ResultRegistrationForm();
         registrationPage.openPage()
                 .setFirstName(firstName)
                 .setLastName(lastName)
@@ -82,9 +78,6 @@ public class PageObjectTest extends TestBase {
     }
     @Test
     void negativeMobilePhoneTest() {
-        RegistrationPage registrationPage = new RegistrationPage();
-        SubmitForm submitForm = new SubmitForm();
-        ResultRegistrationForm resultRegistrationForm = new ResultRegistrationForm();
         registrationPage.openPage()
                 .setFirstName(firstName)
                 .setLastName(lastName)
