@@ -5,17 +5,12 @@ import components.SubmitForm;
 import components.UploadFile;
 import components.UserAddress;
 import org.junit.jupiter.api.Test;
-import pages.*;
+import pages.RegistrationPage;
 import utils.RandomDataUtils;
 
 public class PageObjectTest extends TestBase {
     RegistrationPage registrationPage = new RegistrationPage();
     RandomDataUtils randomUtils = new RandomDataUtils();
-    UploadFile uploadFile = new UploadFile();
-    UserAddress userAddress = new UserAddress();
-    SubmitForm submitForm = new SubmitForm();
-    ResultRegistrationForm resultRegistrationForm = new ResultRegistrationForm();
-
     private final String firstName = randomUtils.setFirstName(),
             lastName = randomUtils.setLastName(),
             email = randomUtils.setEmail(),
@@ -27,11 +22,14 @@ public class PageObjectTest extends TestBase {
             yearOfBirth = randomUtils.setYearOfBirth(),
             subject = randomUtils.setSubject(),
             hobby = randomUtils.setHobby(),
-            picture = "pic.png",
+            picture = randomUtils.getRandomFile(),
             address = randomUtils.setAddress(),
             state = randomUtils.setState(),
             city = randomUtils.setCity(state);
-
+    UploadFile uploadFile = new UploadFile();
+    UserAddress userAddress = new UserAddress();
+    SubmitForm submitForm = new SubmitForm();
+    ResultRegistrationForm resultRegistrationForm = new ResultRegistrationForm();
 
     @Test
     void positiveFullFormTest() {
@@ -46,14 +44,14 @@ public class PageObjectTest extends TestBase {
                 .setUserHobbies(hobby);
         uploadFile.uploadFileMethod(picture);
         userAddress.setUserAddress(address)
-                    .setUserAddressStateCity(state, city);
+                .setUserAddressStateCity(state, city);
         submitForm.clickOnSubmit();
 
         resultRegistrationForm.checkRegistrationForm("Student Name", firstName + " " + lastName)
                 .checkRegistrationForm("Student Email", email)
                 .checkRegistrationForm("Gender", gender)
                 .checkRegistrationForm("Mobile", phoneNum)
-                .checkRegistrationForm("Date of Birth", dayOfBirth + " " + randomUtils.getNameOfMonth() + "," + yearOfBirth)
+                .checkRegistrationForm("Date of Birth", dayOfBirth + " " + randomUtils.monthName + "," + yearOfBirth)
                 .checkRegistrationForm("Subjects", subject)
                 .checkRegistrationForm("Hobbies", hobby)
                 .checkRegistrationForm("Picture", picture)
@@ -61,6 +59,7 @@ public class PageObjectTest extends TestBase {
                 .checkRegistrationForm("State and City", state + " " + city);
 
     }
+
     @Test
     void positiveRequiredFormTest() {
         registrationPage.openPage()
@@ -74,8 +73,9 @@ public class PageObjectTest extends TestBase {
         resultRegistrationForm.checkRegistrationForm("Student Name", firstName + " " + lastName)
                 .checkRegistrationForm("Gender", gender)
                 .checkRegistrationForm("Mobile", phoneNum)
-                .checkRegistrationForm("Date of Birth", dayOfBirth + " " + randomUtils.getNameOfMonth() + "," + yearOfBirth);
+                .checkRegistrationForm("Date of Birth", dayOfBirth + " " + randomUtils.monthName + "," + yearOfBirth);
     }
+
     @Test
     void negativeMobilePhoneTest() {
         registrationPage.openPage()

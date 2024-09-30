@@ -3,24 +3,23 @@ package tests;
 import components.ResultRegistrationForm;
 import components.SubmitForm;
 import components.UserAddress;
-import pages.TextBoxRegistrationPage;
 import org.junit.jupiter.api.Test;
-import pages.*;
+import pages.RegistrationPage;
+import pages.TextBoxRegistrationPage;
 import utils.RandomDataUtils;
 
-public class TextBoxTest extends TestBase{
+public class TextBoxTest extends TestBase {
     RandomDataUtils randomUtils = new RandomDataUtils();
-    RegistrationPage registrationPage = new RegistrationPage();
-    TextBoxRegistrationPage textBoxRegistrationPage = new TextBoxRegistrationPage();
-    UserAddress userAddress = new UserAddress();
-    SubmitForm submitForm = new SubmitForm();
-    ResultRegistrationForm resultRegistrationForm = new ResultRegistrationForm();
-
     private final String firstName = randomUtils.setFirstName(),
             lastName = randomUtils.setLastName(),
             email = randomUtils.setEmail(),
             currentAddress = randomUtils.setAddress(),
             permanentAddress = randomUtils.setAddress();
+    RegistrationPage registrationPage = new RegistrationPage();
+    TextBoxRegistrationPage textBoxRegistrationPage = new TextBoxRegistrationPage();
+    UserAddress userAddress = new UserAddress();
+    SubmitForm submitForm = new SubmitForm();
+    ResultRegistrationForm resultRegistrationForm = new ResultRegistrationForm();
 
     @Test
     void fillFormTest() {
@@ -34,6 +33,6 @@ public class TextBoxTest extends TestBase{
         resultRegistrationForm.checkTextBox("#output #name", firstName + " " + lastName)
                 .checkTextBox("#output #email", email)
                 .checkTextBox("#output #currentAddress", currentAddress)
-                .checkTextBox("#output #permanentAddress",permanentAddress);
+                .checkTextBox("#output #permanentAddress", permanentAddress);
     }
 }

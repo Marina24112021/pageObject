@@ -9,16 +9,18 @@ import static com.codeborne.selenide.Selenide.$;
 
 public class ResultRegistrationForm {
     private final SelenideElement tableResponsive = $(".table-responsive"),
-                    userMobileNumber = $("#userNumber");
+            userMobileNumber = $("#userNumber");
 
-    public ResultRegistrationForm checkRegistrationForm(String key, String value){
+    public ResultRegistrationForm checkRegistrationForm(String key, String value) {
         tableResponsive.$(byText(key)).parent().shouldHave(text(value));
         return this;
     }
-    public void checkLongOfMobileInput(){
+
+    public void checkLongOfMobileInput() {
         userMobileNumber.shouldHave(attribute("required"));
     }
-    public ResultRegistrationForm checkTextBox(String inputKey, String value){
+
+    public ResultRegistrationForm checkTextBox(String inputKey, String value) {
         $(inputKey).shouldHave(text(value));
         return this;
     }
