@@ -109,7 +109,7 @@ public class PageObjectTest extends TestBase {
         });
     }
 
-    @Tag("negative-simple")
+    @Tag("positive-simple")
     @Feature("Feature lable")
     @Story("Negative test check incorrect phone number ")
     @Owner("Vasya.Vasechkin")

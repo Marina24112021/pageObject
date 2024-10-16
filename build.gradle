@@ -46,14 +46,10 @@ tasks.withType(Test) {
         }
     }
 }
-task demoqa_simple_test(type: Test) {
+task demoqa_test(type: Test) {
     useJUnitPlatform {
         includeTags("positive-simple")
     }
 }
-task demoda_negative_test(type: Test) {
-    useJUnitPlatform {
-        includeTags("negative-simple")
-    }
-}
+
 
