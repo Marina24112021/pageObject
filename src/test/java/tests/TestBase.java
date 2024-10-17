@@ -21,9 +21,7 @@ public class TestBase {
         Configuration.reopenBrowserOnFail = false;
         Configuration.baseUrl = "https://demoqa.com";
         Configuration.pageLoadStrategy = "eager";
-        String login = System.getProperty("credential");
-        String remote = System.getProperty("remotewd");
-        Configuration.remote = "https://user1:1234@selenoid.autotests.cloud/wd/hub";
+        Configuration.remote = "https://"+System.getProperty("credential")+"@"+System.getProperty("remotewd")+"/wd/hub";
 
         DesiredCapabilities capabilities = new DesiredCapabilities();
         capabilities.setCapability("selenoid:options", Map.<String, Object>of(
