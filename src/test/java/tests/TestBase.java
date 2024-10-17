@@ -17,10 +17,12 @@ import static com.codeborne.selenide.Selenide.closeWebDriver;
 public class TestBase {
     @BeforeAll
     static void beforeAll() {
-        Configuration.browserSize = "1920x1080";
         Configuration.reopenBrowserOnFail = false;
         Configuration.baseUrl = "https://demoqa.com";
         Configuration.pageLoadStrategy = "eager";
+        Configuration.browserSize = System.getProperty("browsersize","1920x1080");
+        Configuration.browser = System.getProperty("browsername", "firefox");
+        Configuration.browserVersion = System.getProperty("browserversion", "124.0");
         Configuration.remote = "https://"+System.getProperty("credential")+"@"+System.getProperty("remotewd")+"/wd/hub";
         System.out.println(Configuration.remote);
         DesiredCapabilities capabilities = new DesiredCapabilities();
