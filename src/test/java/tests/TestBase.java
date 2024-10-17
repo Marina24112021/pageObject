@@ -22,7 +22,7 @@ public class TestBase {
         Configuration.baseUrl = "https://demoqa.com";
         Configuration.pageLoadStrategy = "eager";
         Configuration.remote = "https://"+System.getProperty("credential")+"@"+System.getProperty("remotewd")+"/wd/hub";
-
+        System.out.println(Configuration.remote);
         DesiredCapabilities capabilities = new DesiredCapabilities();
         capabilities.setCapability("selenoid:options", Map.<String, Object>of(
                 "enableVNC", true,
