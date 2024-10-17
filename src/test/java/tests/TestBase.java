@@ -20,11 +20,15 @@ public class TestBase {
         Configuration.reopenBrowserOnFail = false;
         Configuration.baseUrl = "https://demoqa.com";
         Configuration.pageLoadStrategy = "eager";
+        Configuration.browser = System.getProperty("browsername", "chrome");
         Configuration.browserSize = System.getProperty("browsersize","1920x1080");
-        Configuration.browser = System.getProperty("browsername", "firefox");
-        Configuration.browserVersion = System.getProperty("browserversion", "124.0");
+        Configuration.browserVersion = System.getProperty("browserversion", "125.0");
         Configuration.remote = "https://"+System.getProperty("credential")+"@"+System.getProperty("remotewd")+"/wd/hub";
-        System.out.println(Configuration.remote);
+
+        System.out.println(Configuration.browser);
+        System.out.println(Configuration.browserSize);
+        System.out.println(Configuration.browserVersion);
+
         DesiredCapabilities capabilities = new DesiredCapabilities();
         capabilities.setCapability("selenoid:options", Map.<String, Object>of(
                 "enableVNC", true,
