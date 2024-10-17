@@ -50,7 +50,7 @@ public class RegistrationPage {
     }
 
     public RegistrationPage setUserPhoneNumber(String phoneNum) {
-        phoneNumberInput.setValue(phoneNum);
+        phoneNumberInput.scrollTo().setValue(phoneNum);
         return this;
     }
 

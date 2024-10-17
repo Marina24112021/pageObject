@@ -12,7 +12,7 @@ import pages.RegistrationPage;
 import utils.RandomDataUtils;
 
 import static io.qameta.allure.Allure.step;
-
+@Tag("positive-simple")
 public class PageObjectTest extends TestBase {
     RegistrationPage registrationPage = new RegistrationPage();
     RandomDataUtils randomUtils = new RandomDataUtils();
@@ -36,8 +36,6 @@ public class PageObjectTest extends TestBase {
     SubmitForm submitForm = new SubmitForm();
     ResultRegistrationForm resultRegistrationForm = new ResultRegistrationForm();
 
-
-    @Tag("positive-simple")
     @Feature("Feature lable")
     @Story("Check full filled inputs with result table ")
     @Owner("Chen.Marina")
@@ -79,7 +77,7 @@ public class PageObjectTest extends TestBase {
         });
     }
 
-    @Tag("positive-simple")
+
     @Feature("Feature lable")
     @Story("Check required input and compare with result table ")
     @Owner("Ivan.Ivanov")
@@ -109,7 +107,7 @@ public class PageObjectTest extends TestBase {
         });
     }
 
-    @Tag("positive-simple")
+
     @Feature("Feature lable")
     @Story("Negative test check incorrect phone number ")
     @Owner("Vasya.Vasechkin")

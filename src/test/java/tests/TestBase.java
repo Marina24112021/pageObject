@@ -17,14 +17,13 @@ import static com.codeborne.selenide.Selenide.closeWebDriver;
 public class TestBase {
     @BeforeAll
     static void beforeAll() {
-        Configuration.reopenBrowserOnFail = false;
-        Configuration.baseUrl = "https://demoqa.com";
-        Configuration.pageLoadStrategy = "eager";
         Configuration.browser = System.getProperty("browsername", "chrome");
         Configuration.browserSize = System.getProperty("browsersize", "1920x1080");
         Configuration.browserVersion = System.getProperty("browserversion", "125.0");
         Configuration.remote = "https://" + System.getProperty("credential") + "@" + System.getProperty("remotewd") + "/wd/hub";
-
+        Configuration.reopenBrowserOnFail = false;
+        Configuration.baseUrl = "https://demoqa.com";
+        Configuration.pageLoadStrategy = "eager";
         DesiredCapabilities capabilities = new DesiredCapabilities();
         capabilities.setCapability("selenoid:options", Map.<String, Object>of(
                 "enableVNC", true,
