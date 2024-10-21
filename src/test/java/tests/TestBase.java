@@ -9,6 +9,7 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.openqa.selenium.remote.DesiredCapabilities;
+import utils.WebDriverUtils;
 
 import java.util.Map;
 
@@ -20,7 +21,7 @@ public class TestBase {
         Configuration.browser = System.getProperty("browsername", "chrome");
         Configuration.browserSize = System.getProperty("browsersize", "1920x1080");
         Configuration.browserVersion = System.getProperty("browserversion", "125.0");
-        Configuration.remote = "https://" + System.getProperty("credential") + "@" + System.getProperty("remotewd") + "/wd/hub";
+        Configuration.remote = "https://" + System.getProperty("credential") + "@" + WebDriverUtils.REMOTEWD.getDef() + "/wd/hub";
         Configuration.reopenBrowserOnFail = false;
         Configuration.baseUrl = "https://demoqa.com";
         Configuration.pageLoadStrategy = "eager";

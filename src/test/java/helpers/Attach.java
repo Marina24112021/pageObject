@@ -4,6 +4,7 @@ import com.codeborne.selenide.Selenide;
 import io.qameta.allure.Attachment;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
+import utils.WebDriverUtils;
 
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -44,7 +45,7 @@ public class Attach {
     }
 
     public static URL getVideoUrl() {
-        String videoUrl = "https://" + System.getProperty("remotewd") + "/video/" + sessionId() + ".mp4";
+        String videoUrl = "https://" + WebDriverUtils.REMOTEWD.getDef() + "/video/" + sessionId() + ".mp4";
         try {
             return new URL(videoUrl);
         } catch (MalformedURLException e) {
